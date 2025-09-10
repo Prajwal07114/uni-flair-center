@@ -15,6 +15,7 @@ import Admin from "./pages/Admin";
 import ClubDashboard from "./pages/ClubDashboard";
 import Gamification from "./pages/Gamification";
 import StudentHub from "./pages/StudentHub";
+import StudentRepresentative from "./pages/StudentRepresentative";
 import Login from "./pages/auth/Login";
 import Unauthorized from "./pages/auth/Unauthorized";
 import NotFound from "./pages/NotFound";
@@ -36,49 +37,55 @@ const App = () => (
               
               {/* Protected Routes */}
               <Route path="/dashboard" element={
-                <ProtectedRoute allowedRoles={['student']}>
+                <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
               } />
               
               <Route path="/activities" element={
-                <ProtectedRoute allowedRoles={['student']}>
+                <ProtectedRoute>
                   <Activities />
                 </ProtectedRoute>
               } />
               
               <Route path="/portfolio" element={
-                <ProtectedRoute allowedRoles={['student']}>
+                <ProtectedRoute>
                   <Portfolio />
                 </ProtectedRoute>
               } />
               
               <Route path="/gamification" element={
-                <ProtectedRoute allowedRoles={['student']}>
+                <ProtectedRoute>
                   <Gamification />
                 </ProtectedRoute>
               } />
               
               <Route path="/student-hub" element={
-                <ProtectedRoute allowedRoles={['student']}>
+                <ProtectedRoute>
                   <StudentHub />
                 </ProtectedRoute>
               } />
               
+              <Route path="/student-representative" element={
+                <ProtectedRoute>
+                  <StudentRepresentative />
+                </ProtectedRoute>
+              } />
+              
               <Route path="/faculty" element={
-                <ProtectedRoute allowedRoles={['teacher']}>
+                <ProtectedRoute>
                   <Faculty />
                 </ProtectedRoute>
               } />
               
               <Route path="/admin" element={
-                <ProtectedRoute allowedRoles={['student-representative']}>
+                <ProtectedRoute>
                   <Admin />
                 </ProtectedRoute>
               } />
               
               <Route path="/club" element={
-                <ProtectedRoute allowedRoles={['student-representative']}>
+                <ProtectedRoute>
                   <ClubDashboard />
                 </ProtectedRoute>
               } />

@@ -26,12 +26,13 @@ interface NavItem {
 const navItems: NavItem[] = [
   { href: "/dashboard", label: "Dashboard", icon: BarChart3 },
   { href: "/student-hub", label: "Student Hub", icon: BookOpen },
+  { href: "/student-representative", label: "Student Rep", icon: Users },
   { href: "/activities", label: "Activities", icon: FileText },
   { href: "/portfolio", label: "Portfolio", icon: FileText },
   { href: "/gamification", label: "Achievements", icon: Trophy },
-  { href: "/faculty", label: "Faculty Panel", icon: Users, role: "faculty" },
-  { href: "/admin", label: "Admin Panel", icon: Settings, role: "admin" },
-  { href: "/club", label: "Club Dashboard", icon: Users, role: "club" },
+  { href: "/faculty", label: "Faculty Panel", icon: Users },
+  { href: "/admin", label: "Admin Panel", icon: Settings },
+  { href: "/club", label: "Club Dashboard", icon: Users },
 ];
 
 export const Sidebar = () => {
@@ -40,12 +41,6 @@ export const Sidebar = () => {
   
   if (!user) return null;
   
-  const userRole = user.role === 'student-representative' ? 'admin' : 
-                   user.role === 'teacher' ? 'faculty' : 'student';
-
-  const filteredNavItems = navItems.filter(
-    (item) => !item.role || item.role === userRole
-  );
 
   return (
     <div
@@ -76,7 +71,7 @@ export const Sidebar = () => {
 
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-2">
-        {filteredNavItems.map((item) => (
+        {navItems.map((item) => (
           <NavLink
             key={item.href}
             to={item.href}

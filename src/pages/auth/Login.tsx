@@ -14,14 +14,14 @@ const roleConfig = {
     description: 'Access your academic dashboard and track your activities',
     icon: '👤',
     bgColor: 'bg-blue-100',
-    redirectPath: '/dashboard'
+    redirectPath: '/student-hub'
   },
   'student-representative': {
     title: 'Student Representative Login',
     description: 'Manage activities, assign scores, and grant badges',
     icon: '👥',
     bgColor: 'bg-green-100',
-    redirectPath: '/admin'
+    redirectPath: '/student-representative'
   },
   teacher: {
     title: 'Teacher Login',
