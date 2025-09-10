@@ -22,11 +22,13 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { href: "/dashboard", label: "Dashboard", icon: BarChart3 },
-  { href: "/activities", label: "Activities", icon: BookOpen },
+  { href: "/student-hub", label: "Student Hub", icon: BookOpen },
+  { href: "/activities", label: "Activities", icon: FileText },
   { href: "/portfolio", label: "Portfolio", icon: FileText },
   { href: "/gamification", label: "Achievements", icon: Trophy },
   { href: "/faculty", label: "Faculty Panel", icon: Users, role: "faculty" },
   { href: "/admin", label: "Admin Panel", icon: Settings, role: "admin" },
+  { href: "/club", label: "Club Dashboard", icon: Users, role: "club" },
 ];
 
 export const Sidebar = () => {

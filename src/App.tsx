@@ -8,7 +8,11 @@ import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Activities from "./pages/Activities";
 import Faculty from "./pages/Faculty";
+import Portfolio from "./pages/Portfolio";
+import Admin from "./pages/Admin";
+import ClubDashboard from "./pages/ClubDashboard";
 import Gamification from "./pages/Gamification";
+import StudentHub from "./pages/StudentHub";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +30,10 @@ const App = () => (
             <Route path="/activities" element={<Activities />} />
             <Route path="/faculty" element={<Faculty />} />
             <Route path="/gamification" element={<Gamification />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/student-hub" element={<StudentHub />} />
+            <Route path="/club" element={<ClubDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
