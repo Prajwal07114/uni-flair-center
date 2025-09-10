@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Users, BookOpen, ArrowRight } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const userRoles = [
   {
     title: "Student",
     description: "Track your activities and complete your profile",
     icon: "👤",
-    route: "/dashboard",
+    route: "/login",
     buttonText: "Get Started",
     bgColor: "bg-blue-100",
   },
@@ -16,7 +17,7 @@ const userRoles = [
     title: "Student Representative", 
     description: "Manage activities, assign scores, and grant badges",
     icon: "👥",
-    route: "/admin",
+    route: "/login",
     buttonText: "Get Started", 
     bgColor: "bg-blue-100",
   },
@@ -24,13 +25,15 @@ const userRoles = [
     title: "Teacher",
     description: "Mark attendance and monitor participation", 
     icon: "👨‍🏫",
-    route: "/faculty",
+    route: "/login",
     buttonText: "Get Started",
     bgColor: "bg-blue-100",
   },
 ];
 
 export default function Landing() {
+  const { user, logout } = useAuth();
+
   return (
     <div className="min-h-screen bg-gradient-card">
       {/* Header */}
@@ -39,7 +42,19 @@ export default function Landing() {
           <div className="text-center">
             <div className="text-sm font-medium text-primary mb-1">CENTRALIZED STUDENT ACTIVITY RECORD</div>
           </div>
-          <Button>Log In</Button>
+          {user ? (
+            <div className="flex items-center gap-4">
+              <span className="text-sm">Welcome, {user.name}</span>
+              <Link to="/dashboard">
+                <Button variant="outline">Dashboard</Button>
+              </Link>
+              <Button onClick={logout} variant="ghost">Log Out</Button>
+            </div>
+          ) : (
+            <Link to="/login">
+              <Button>Log In</Button>
+            </Link>
+          )}
         </div>
       </header>
 

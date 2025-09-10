@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 import {
   BarChart3,
   BookOpen,
@@ -11,6 +13,7 @@ import {
   Menu,
   X,
   GraduationCap,
+  LogOut,
 } from "lucide-react";
 
 interface NavItem {
@@ -33,7 +36,12 @@ const navItems: NavItem[] = [
 
 export const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const userRole = "student"; // This would come from auth context
+  const { user, logout } = useAuth();
+  
+  if (!user) return null;
+  
+  const userRole = user.role === 'student-representative' ? 'admin' : 
+                   user.role === 'teacher' ? 'faculty' : 'student';
 
   const filteredNavItems = navItems.filter(
     (item) => !item.role || item.role === userRole
@@ -91,13 +99,25 @@ export const Sidebar = () => {
       <div className="p-4 border-t border-border">
         <div className={cn("flex items-center gap-3", isCollapsed && "justify-center")}>
           <div className="h-8 w-8 bg-gradient-primary rounded-full flex items-center justify-center">
-            <span className="text-sm font-bold text-white">JD</span>
+            <span className="text-sm font-bold text-white">
+              {user.name.split(' ').map(n => n[0]).join('')}
+            </span>
           </div>
           {!isCollapsed && (
             <div className="flex-1">
-              <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">Student ID: 12345</p>
+              <p className="text-sm font-medium">{user.name}</p>
+              <p className="text-xs text-muted-foreground">{user.role.replace('-', ' ')}</p>
             </div>
+          )}
+          {!isCollapsed && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={logout}
+              className="h-8 w-8"
+            >
+              <LogOut className="h-4 w-4" />
+            </Button>
           )}
         </div>
       </div>
