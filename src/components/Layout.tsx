@@ -1,16 +1,20 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Sidebar } from "./navigation/Sidebar";
 import { Topbar } from "./navigation/Topbar";
 import { ChatBot } from "./ai/ChatBot";
 
-export const Layout = () => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const isLandingPage = location.pathname === "/";
 
   if (isLandingPage) {
     return (
       <div className="min-h-screen bg-background">
-        <Outlet />
+        {children}
       </div>
     );
   }
@@ -21,7 +25,7 @@ export const Layout = () => {
       <div className="flex-1 flex flex-col">
         <Topbar />
         <main className="flex-1 p-6">
-          <Outlet />
+          {children}
         </main>
       </div>
       <ChatBot />
